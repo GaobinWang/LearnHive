@@ -1,3 +1,5 @@
+--格式化数据库
+drop database bicycle cascade;
 --创建数据库
 create database if not exists bicycle
 comment "create database of project2: Hangzhou public bicycle project"
@@ -29,12 +31,12 @@ load data local inpath "/home/wanggaobin/project_bicycle/bicycledata.csv" into t
 
 --创建sjx表格
 create table if not exists bicycle.sxj(oper_type string comment "operation type,1 for down,2 for up",
-net_id int comment "the id of station where this operation occur",
-stall_num int comment "the id of location where bike park",
-car_num  int comment "the unique id of bike",
-up_date int comment  "the date when operation occur in format YYYYMMDD", 
-up_time  int comment "the time when operation occur in format HHMMSS",
-oper_exteid int comment "the unique id of operator")
+net_id string comment "the id of station where this operation occur",
+stall_num string comment "the id of location where bike park",
+car_num  string  comment "the unique id of bike",
+up_date string  comment  "the date when operation occur in format YYYYMMDD", 
+up_time  string  comment "the time when operation occur in format HHMMSS",
+oper_exteid string  comment "the unique id of operator")
 comment  "this is the shang xia jia operation  table ,every row represent that the worker  up or down a bike"
 row format delimited fields terminated by ','
 stored as textfile
