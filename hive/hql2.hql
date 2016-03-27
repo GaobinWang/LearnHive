@@ -6,6 +6,12 @@ as select name,salary,address
 from tablename2
 where var="aaa";
 
+--将查询结果导出到一张本地表格中
+insert overwrite local directory "path"
+select name,salary,address
+from tablename2
+where var="aaa";
+
 
 --case...when...then 语句
 --由于hive中并不支持记录级别的更新，因此sql中的update ...set  ... where ...语句不能使用，而下面这条语句刚好能够完成此功能
