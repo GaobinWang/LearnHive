@@ -30,17 +30,17 @@ tblproperties ("creator"="wanggaobin","create-at"="2016-03-27");
 load data local inpath "/home/wanggaobin/project_bicycle/bicycledata.csv" into table bicycle.tran;
 
 --创建sjx表格
-create table if not exists bicycle.sxj(oper_type string comment "operation type,1 for down,2 for up",
-net_id string comment "the id of station where this operation occur",
-stall_num string comment "the id of location where bike park",
-car_num  string  comment "the unique id of bike",
-up_date string  comment  "the date when operation occur in format YYYYMMDD", 
-up_time  string  comment "the time when operation occur in format HHMMSS",
-oper_exteid string  comment "the unique id of operator")
+create table if not exists bicycle.sxj(oper_type int  comment "operation type,1 for down,2 for up",
+net_id int  comment "the id of station where this operation occur",
+stall_num int  comment "the id of location where bike park",
+car_num  int   comment "the unique id of bike",
+up_date int   comment  "the date when operation occur in format YYYYMMDD", 
+up_time  int  comment "the time when operation occur in format HHMMSS",
+oper_exteid int   comment "the unique id of operator")
 comment  "this is the shang xia jia operation  table ,every row represent that the worker  up or down a bike"
 row format delimited fields terminated by ','
 stored as textfile
 tblproperties ("creator"="wanggaobin","create-at"="2016-03-27");
 --向sxj表格中导入数据
-load data local inpath "/home/wanggaobin/project_bicycle/sxjdata_final.csv" into table bicycle.sxj ;
+load data local inpath "/home/wanggaobin/project_bicycle/sxj.csv" into table bicycle.sxj ;
 
