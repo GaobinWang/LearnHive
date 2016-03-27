@@ -1,0 +1,356 @@
+show databases;
+use test;
+show tables;
+desc wenyi;
+show databases;
+create database bicycledata;
+show databases;
+use bicycledata;
+CREATE TABLE  bicycledata(tran_type INT,rent_netid INT,tran_data INT,tran_time INT,exte_card INT, rent_num INT,car_num INT,rent_uptime INT,return_netid INT,return_uptime INT, user_cost STRING,return_data INT,return_time INT,tran_flag  INT)
+COMMENT "this is sample data from han"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+show tables;
+desc bicycleddata;
+show tables;
+desc bicycledata;
+load data local inpath "/home/wanggaobin/project_bicycle/bicycledata.csv" into table bicycledata;
+select count(*)  from bicycledata;
+select *  from bicycledata  limit 10;
+select *  from bicycledata  limit 100;
+desc bicycledata;
+select exte_card,rent_num,car_num,rent_uptime,return_uptime  from bicycledata  limit 100;
+select exte_card   from bicycledata  limit 100;
+select rent_num,car_num   from bicycledata  limit 100;
+rename table bicycledata to bicycledata_tmp;
+CREATE TABLE  bicycledata_final (tran_type INT,rent_netid INT,tran_data INT,tran_time INT,exte_card INT, rent_num INT,car_num INT,rent_uptime STRING,return_netid INT,return_uptime STRING, user_cost STRING,return_data INT,return_time INT,tran_flag  INT)
+COMMENT "this is sample data from han"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+show tables;
+desc bicycledata_final
+;
+load data local inpath "/home/wanggaobin/project_bicycle/bicycledata.csv" into table bicycledata_final ;
+select *  from bicycledata_final limit 100;
+show tables;
+CREATE TABLE  sxjdata(oper_type INT,net_id INT,stall_num INT ,car_num INT ,up_time STRING,oper_exteid INT)
+COMMENT "this is sample data from han"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+show tables;
+load data local inpath "/home/wanggaobin/project_bicycle/sxj.csv" into table sxjdata ;
+select * from sxjdata limit 100;
+desc sxjdata;
+select count(*) from sxjdata ;
+show tables;
+delete from bicycledata;
+delete from table  bicycledata;
+delete table  bicycledata;
+show tables;
+delete table bicycledata;
+show tables;
+desc bicycle 
+;
+desc bicycledata_final;
+select distinct tran_data  from bicycledata_final ;
+select distinct tran_data  from bicycledata_final  order by tran_data;
+select tran_data,count(*)   from bicycledata_final  order by tran_data group by tran_data;
+select tran_data,count(*)   from bicycledata_final   group by tran_data;
+desc bicycledata_final;
+select discinct tran_type from  bicycledata_final;
+select distinct tran_type from  bicycledata_final;
+;
+ls
+;
+desc bicycledata_final;
+create table bicycledata_week(select * from bicycledata_final where tran_data>=20131021 and tran_data<=20131027);
+desc bicycledata_final;
+show tables;
+create table bicycledata_week(select * from bicycledata_final where tran_data>=20131021 and tran_data<=20131027);
+desc bicycledata_final;
+show tables;
+desc sxjdata;
+select distinct oper_exteid from sxjdata;
+desc sxjdata;
+show tables;
+CREATE TABLE  bicycledata_week
+AS SELECT  *
+FROM  bicycledata_final  where tran_data>=20131021 and tran_data<=20131027;
+show tables;
+select count(*) from bicycledata_week;
+show databases;
+use bicycledata;
+show tables;
+select *  from sxjdata limit 10;
+desc sxjdata;
+show databases;
+use bicycledata;
+show tables;
+CREATE TABLE  sxjdata_final(oper_type INT,net_id INT,stall_num INT ,car_num INT ,up_data INT, up_time INT,oper_exteid INT)
+COMMENT "this is sample data from han"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+show tables;
+desc sxjdata_final;
+load data local inpath "/home/wanggaobin/project_bicycle/sxjdata_final.csv" into table sxjdata_final ;
+show tables;
+select count(*) from sxjdata_final;
+select up_data,net_id,count(*) from sxjdata  group by up_data  where net_id=2454 and oper_type=1;
+select up_data,net_id,count(*) from sxjdata  where net_id=2454 and oper_type=1 group by up_data;
+select up_data,net_id,count(*) from sxjdata_final  where net_id=2454 and oper_type=1 group by up_data;
+select up_data,net_id,count(*) from sxjdata_final   group by up_data  where net_id=2454 and oper_type=1;
+select count(*) from sxjdata_final;
+show databases;
+use bicycledata;
+show tables;
+select up_data,net_id,count(*) from sxjdata_final  where net_id=2454 and oper_type=1 group by up_data;
+select up_data,net_id,count(*) from sxjdata_final  where net_id=2454 and oper_type=1 group by up_data,net_id ;
+show tables;
+desc sxjdata_final
+;
+select * from sxjdata_final limit 10;
+select * from sxjdata_final limit 1000;
+CREATE TABLE  sxjdata_final2(oper_type STRING,net_id STRING,stall_num STRING ,car_num STRING ,up_data STRING, up_time STRING,oper_exteid STRING)
+COMMENT "this is sample data from han"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+show tables;
+load data local inpath "/home/wanggaobin/project_bicycle/sxjdata_final.csv" into table sxjdata_final2 ;
+desc sxjdata_final2 ;
+select * from  sxjdata_final2  limit 10;
+select * from  sxjdata_final2  limit 1000;
+select count(*) from  sxjdata_final2 ;
+select distinct oper_type  from  sxjdata_final2 ;
+select oper_type,count(*) from bicycledata.sxjdata_final2  group by oper_type;
+use bicycledata;
+show tables;
+select net_id,count(*) from sxjdata_final2 where net_id=2454;
+select net_id,count(*) from sxjdata_final2 where net_id=2454 group by net_id ;
+select net_id,count(*) from sxjdata_final2 where net_id=2059  group by net_id ;
+show tables;
+desc bicycledata_week;
+select tran_data,count(*) from  bicycledata.bicycledata_week  where rent_netid=2454 group by tran_data order by tran_data;
+dfs -ls
+;
+dfs -ls /usr/hive/
+;
+exit;
+eixt;
+exit;
+set env:HOME;
+set;
+set foo;
+set foo=bar2;
+set foo;
+create table toss1(i int ,${hivevar:foo string})
+;
+create table toss1(i int ,${hivevar:foo } string)
+;
+create table toss1(i int ,${hivevar:foo} string);
+desc toss1
+;
+set foo;
+set hiveconf:hive.cli.print.current.db
+;
+set hiveconf:hive.cli.print.current.db=true;
+show databases;
+use wanggaobin_test;
+show tables;
+;
+show tables;
+select * from sxjdata_final2 limit 10;
+exit;
+use wanggaobin_test;
+show tables;
+select * from tab_name limit 10;
+show tables;
+select * from sxjdata_final2  limit 10;
+create database  wanggaobin_test;
+create database  if not exists wanggaobin_test;
+create database  if not exists wanggaobin;
+create database if not exists wanggaobin2
+location "/home/wanggaobin"
+comment  "hello world!";
+create database if not exists wanggaobin2
+comment  "hello world!";
+describe wanggabin2;
+describe database  wanggabin2;
+describe database  wanggaobin2;
+show databases;
+drop database if exists wanggaobin;
+show databases;
+drop database if exists wanggaobin_test cascade;
+show databases;
+use wanggaobin2
+;
+create database  wanggaobin
+with dbproperties ("creator"="wanggaobin","date"="2016-03-15");
+describe database extended wanggaobin;
+alter database wanggaobin set dbproperties("edited-by"="fbb");
+describe database extended wanggaobin;
+show databases;
+use wanggaobin;
+describe extended wanggaobin.table1;
+create table if not exists wanggaobin.table1(
+name string comment "employee name"
+salary float comment "employee salary"
+age  int comment "employee age")
+comment "Description of the table"
+tableproperties ("creator"="wanggaobin","create-at"="2016-03-15");
+show tables;
+create table if not exists wanggaobin.table1(
+name string comment "employee name",
+salary float comment "employee salary",
+age  int comment "employee age")
+comment "Description of the table"
+tableproperties ("creator"="wanggaobin","create-at"="2016-03-15");
+describe extended wanggaobin.table1;
+create table if not exists wanggaobin.table1(
+name string comment "employee name",
+salary float comment "employee salary",
+age  int comment "employee age")
+comment "Description of the table"
+tblproperties ("creator"="wanggaobin","create-at"="2016-03-15");
+describe extended wanggaobin.table1;
+create table if not exists wanggaobin.table2
+like wanggaobin.table1;
+describe extended wanggaobin.table2;
+show tables;
+desc table1;
+show tables in wanggaobin;
+drop table if exists table1;
+show tables in wanggaobin;
+alter table table2 rename to table1;
+show tables in wanggaobin;
+desc table1;
+alter table table1
+change column  name ourname int
+comment "this is a test"
+after age;
+desc table1;
+alter table table1 add columns(
+test1 int comment "test1111",
+test2 int comment "test22222");
+desc table1;
+alter table table1 set tblproperties("note"="hahhahhah");
+desc table1;
+describe extended  table1;
+alter table table1 set tblproperties("note"="hahhahhah##################################################3");
+describe extended  table1;
+use wanggaobin;
+show tables;
+desc table1
+;
+drop table table1;
+show tables;
+create table if not exists wanggaobin.table1(
+name string comment "employee name",
+salary float comment "employee salary")
+comment "Description of the table"
+tblproperties ("creator"="wanggaobin","create-at"="2016-03-15");
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+create table if not exists wanggaobin.table1(
+name string comment "employee name",
+salary float comment "employee salary")
+comment "Description of the table"
+tblproperties ("creator"="wanggaobin","create-at"="2016-03-15")
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+load data local inpath "/home/wanggaobin/testtable.csv" into table table1 ;
+show tables;
+select * from table1;
+drop table table1;
+create table if not exists wanggaobin.table1(
+name string comment "employee name",
+salary float comment "employee salary")
+comment "Description of the table"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+desc table1;
+load data local inpath "/home/wanggaobin/testtable.csv" into table table1 ;
+select * from table1;
+select name,salary,
+   case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end as index from table1;
+create table table2
+as  select name,salary,
+   case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end as index from table1;
+show tables;
+create table table2
+as 
+select name,salary,
+   case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end as index from table1;
+show tables;
+create table table3
+as  select name,salary,
+   case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end as index
+from table1;
+create table table3
+as  select name,salary,(case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end) as index
+from table1;
+create table if not exists wanggaobin.table3(
+name string comment "employee name",
+salary float comment "employee salary",
+index string comment "hhh")
+comment "Description of the table"
+ROW FORMAT DELIMITED FIELDS TERMINATED BY ','
+STORED AS TEXTFILE;
+desc table3;
+insert overwrite table table3
+select name,salary,
+   case
+      when salary<5000.0 then "low"
+      when salary>=5000.0 and salary<7000.0 then "middle"
+      when salary>=7000.0 and salary<10000.0 then "high"
+      else "very high"
+   end as index from table1;
+exit;
+show databases;
+use bicycledata;
+show tables;
+show databases;
+use bicycledata;
+show tables;
+desc bicycledata_week;
+select rent_netid,return_netid,count(*) as weight from bicycledata_week where rent_netid=2059 group by return_netid;
+select rent_netid,return_netid,count(*) as weight from bicycledata_week where rent_netid=2059 group by return_netid,rent_netid;
+select rent_netid,return_netid,count(*) as weight from bicycledata_week where rent_netid=2059 group by return_netid,rent_netid order by weight;
+show tables;
+select rent_netid,return_netid,count(*) as weight from bicycledata.bicycledata_week where rent_netid=2059 group by return_netid,rent_netid order by weight;
+select rent_netid,return_netid,count(*) as weight from bicycledata.bicycledata_final  where rent_netid=2059 group by return_netid,rent_netid order by weight;
+show databases;
+use  bicycledata;
+show tables;
+desc sxjdata_final2;
+select net_id,count(*)  from bicycledata.sxjdata_final2  group by net_id;
+select net_id,count(*) as num   from bicycledata.sxjdata_final2  group by net_id order by  num decreasing
+;
+select net_id,count(*) as num   from bicycledata.sxjdata_final2  group by net_id order by  num decreasing;
+select net_id,count(*) as num   from bicycledata.sxjdata_final2  group by net_id order by  num;
+show tables;
+desc sxjdata_final2;
