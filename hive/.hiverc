@@ -1,4 +1,4 @@
-#此文件为hive的初始化文件
+#此文件为hive的初始化文件,一般情况下会放置于$HOME目录下，用户可根据自己的需求进行修正；
 set hive.cli.print.current.db=true;  #设置hive在cli界面下显示当前的数据库
 set hive.exec.mode.local.auto=true; #设置表格本地读取
 set hive.cli.print.header=true; #设置hive在cli界面下显示表格的列明
